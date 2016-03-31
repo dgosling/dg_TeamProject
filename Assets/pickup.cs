@@ -1,29 +1,50 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class pickup : MonoBehaviour {
-    public GameObject player;
-    private bool check=false;
-    private Vector3 coords;
 
+public class pickup : MonoBehaviour {
+   
+    public playerInv at = new playerInv();
+    public string element;
+    private string fire, water, ele, earth;
 
 	// Use this for initialization
 	void Start () {
+        fire = "Fire";
+        water = "Water";
+        ele = "Electricity";
+        earth = "Earth";
         	}
 	
 	// Update is called once per frame
 	void Update () {
-        coords.x=player.GetComponent<Transform>().position.x;
-        coords.y = player.GetComponent<Transform>().position.y;
-        if (GetComponent<BoxCollider2D>().IsTouching(player.GetComponent<BoxCollider2D>()))
+        
+        
+	}
+    void OnCollisionEnter(Collision col)
+    {
+        
+        if(fire == col.gameObject.name)
         {
-            GetComponent<Transform>().position = new Vector3(coords.x, coords.y, 0);
-            check = true;
+            at.setInv(fire);
+            Debug.Log("added fire");
+        }
+        else if (water == col.gameObject.name)
+        {
+            at.setInv(water);
+            Debug.Log("added water");
+        }
+        else if (ele == col.gameObject.name)
+        {
+            at.setInv(ele);
+            Debug.Log("added ele");
+        }
+        else if (earth == col.gameObject.name)
+        {
+            at.setInv(earth);
+            Debug.Log("added earth");
         }
 
-    if(check==true)
-        {
-            GetComponent<Transform>().position = new Vector3(coords.x, coords.y, 0);
-        }
-	}
+    }
+
 }
