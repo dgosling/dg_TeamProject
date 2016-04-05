@@ -18,7 +18,7 @@ public class elementMang : MonoBehaviour {
         player = GameObject.FindWithTag("Player");
         inv = player.GetComponent<playerInv>();
       
-        for (int i = 0; i < 3; i++)
+       /* for (int i = 0; i < 3; i++)
         {
             ab=inv.getElement(i);
             if (ab == true && i == 0)
@@ -45,7 +45,7 @@ public class elementMang : MonoBehaviour {
             }
             else if (ab == false && i == 3)
                 Debug.Log("Player doesn't have Earth");
-        }
+        }*/
         count = element.Length;
         	}
 	

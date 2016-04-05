@@ -34,9 +34,9 @@ public class playerInv : MonoBehaviour {
 
     }
 
-    public bool getElement(int a)
+    /*public bool getElement(int a)
     {
         return elements[a];
-    }
+    }*/
     
 }
