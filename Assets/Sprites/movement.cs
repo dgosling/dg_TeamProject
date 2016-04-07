@@ -116,6 +116,14 @@ public class movement : MonoBehaviour {
         Gizmos.DrawSphere(new Vector3((transform.position.x + transform.GetComponent<BoxCollider2D>().size.x / 2) * transform.localScale.x, (transform.position.y - transform.GetComponent<BoxCollider2D>().size.y / 2) * transform.localScale.y - 0.01f), 0.01f);
 
     }
+    public float getMspeed()
+    {
+        return moveSpeed;
+    }
+    public bool checkWall()
+    {
+        return wallc;
+    }
 
 
     }
