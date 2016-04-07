@@ -2,8 +2,9 @@
 using System.Collections;
 
 public class groundPound : MonoBehaviour {
-    public GameObject player;
-    public float height, velo, downwardsForce,time,cvelo;
+    public GameObject player,brkwll;
+    public float height, velo, downwardsForce,cpos,pos;
+    public Vector2 cvelo;
     public playerInv inv;
     
 
@@ -11,39 +12,55 @@ public class groundPound : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
+        brkwll = GameObject.FindGameObjectWithTag("breakable");
         inv = player.GetComponent<playerInv>();
         
 	}
 	void Update()
     {
-        if(player.GetComponent<Rigidbody2D>().velocity.x>0)
-        {
-            cvelo = player.GetComponent<Rigidbody2D>().velocity.x;
-        }
+        cvelo = player.GetComponent<Rigidbody2D>().velocity;
     }
 	// Update is called once per frame
 	void FixedUpdate () {
-        StartCoroutine(gpound());
-        
-	}
 
-    IEnumerator gpound()
-    {
         if (Input.GetButtonDown("Fire2") && inv.getElement(0) == true)
         {
-            player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-            if (cvelo > 0)
-            {
-                player.GetComponent<Transform>().Translate(new Vector3(+velo, +0));
-            }
-                if (cvelo < 0)
-                player.GetComponent<Transform>().Translate(new Vector3(-velo, +0));
-            player.GetComponent<Rigidbody2D>().velocity = new Vector2(+velo, +height);
-
-            yield return new WaitForSeconds(time);
-            player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, -(downwardsForce));
+            
+            
+            
+            if (cvelo.x > 0) { 
+                for (float ccvelo = player.GetComponent<Rigidbody2D>().velocity.x+velo; ccvelo > 0; ccvelo -= 0.5f)
+                {
+                    player.GetComponent<Rigidbody2D>().velocity = new Vector2(ccvelo,ccvelo);
+                }
         }
+            if(cvelo.x<0)
+            {
+                for (float ccvelo = player.GetComponent<Rigidbody2D>().velocity.x+velo; ccvelo < 0; ccvelo +=  0.5f)
+                {
+                    player.GetComponent<Rigidbody2D>().velocity = new Vector2(ccvelo, ccvelo);
+                }
+            }
+            else
+            {
+                for (float ccvelo = player.GetComponent<Rigidbody2D>().velocity.x + velo; ccvelo > 0; ccvelo -= 0.5f)
+                {
+                    player.GetComponent<Rigidbody2D>().velocity = new Vector2(ccvelo, ccvelo);
+                }
+            }
+
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(+0,-downwardsForce);
+            if (player.GetComponent<BoxCollider2D>().IsTouching(brkwll.GetComponent<BoxCollider2D>()))
+            {
+                Destroy(brkwll);
+            }
+
+
+        }
+
     }
+
+    
     
     
 }
