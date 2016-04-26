@@ -3,9 +3,9 @@ using System.Collections;
 
 
 public class enemydamage : MonoBehaviour {
-	public GameObject player;
+	GameObject player;
 	public float damage;
-	public health value;
+	health value;
 	private float thealth1, thealth2,glob;
 	private GameObject refer;
 	//public double health;

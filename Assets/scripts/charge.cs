@@ -2,12 +2,12 @@
 using System.Collections;
 
 public class charge : MonoBehaviour {
-    public GameObject player,wall,lside,rside;
-    public playerInv playerinv;
-    public movement move;
-    public float cspeed,dif,cposx,endposx;
-    public bool incharge,pos,neg;
-    public collMan lcolman,rcolman;
+    GameObject player,wall,lside,rside;
+    playerInv playerinv;
+    movement move;
+    float cspeed,dif,cposx,endposx;
+    bool incharge,pos,neg;
+    collMan lcolman,rcolman;
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player");

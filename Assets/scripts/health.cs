@@ -3,10 +3,10 @@ using System.Collections;
 
 public class health : MonoBehaviour {
 
-	public float maxhealth = 100f;
-	public float chealth=0f;
+	public float maxhealth;
+	float chealth;
 	public GameObject healthbar;
-	public float healthdec;
+	float healthdec;
 
 
 	// Use this for initialization

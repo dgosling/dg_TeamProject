@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class PCamera : MonoBehaviour {
-    public GameObject plyr;
-    public Vector3 Coords;
+    GameObject plyr;
+   Vector3 Coords;
 
 	// Use this for initialization
 	void Start () {

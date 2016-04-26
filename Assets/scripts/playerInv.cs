@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class playerInv : MonoBehaviour {
-    public bool[] elements;
+    bool[] elements;
 
 
 	// Use this for initialization

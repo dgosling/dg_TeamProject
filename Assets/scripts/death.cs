@@ -3,7 +3,7 @@ using System.Collections;
 
 public class death : MonoBehaviour {
 
-    public GameObject ply;
+    GameObject ply;
 
 	// Use this for initialization
 	void Start () {

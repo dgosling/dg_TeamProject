@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class wallclimb : MonoBehaviour {
-    public GameObject player, wall;
-    public playerInv inv;
-    public movement move;
-    public bool tog;
-    public float vmove;
+    GameObject player;
+    playerInv inv;
+    movement move;
+    bool tog;
+    float vmove;
 
 	// Use this for initialization
 	void Start () {

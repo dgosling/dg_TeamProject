@@ -4,10 +4,10 @@ using System;
 
 
 public class elementMang : MonoBehaviour {
-    public playerInv inv;
-    public GameObject player;
-    public GameObject[] element;
-    private bool ab;
+    playerInv inv;
+    GameObject player;
+    GameObject[] element;
+    
     private int count;
     
 	// Use this for initialization

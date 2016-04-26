@@ -2,12 +2,12 @@
 using System.Collections;
 
 public class groundPound : MonoBehaviour {
-    public GameObject player,brkwll;
-    public float height, velo, downwardsForce,cpos,pos;
+     GameObject player,brkwll;
+    public float downwardsForce;
     public Vector2 cvelo;
-    public playerInv inv;
+    playerInv inv;
     private bool inGP;
-    public collMan collman;
+    collMan collman;
     
 
 

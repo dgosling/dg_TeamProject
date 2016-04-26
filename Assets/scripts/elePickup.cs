@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class elePickup : MonoBehaviour {
-    public playerInv inv;
-    public elementMang mang;
-    public GameObject player;
-    public string nname;
+    playerInv inv;
+    elementMang mang;
+    GameObject player;
+    string nname;
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player");

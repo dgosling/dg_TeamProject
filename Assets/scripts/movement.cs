@@ -6,12 +6,12 @@ public class movement : MonoBehaviour {
     public float jumph;
     public float moveSpeed;
     private Rigidbody2D rigid;
-    public bool grounded = false;
-    public GameObject feet,left,right;
-    public collMan ft, lft, rt;
-    public bool wallc = false;
-    public bool jump;
-    public float hor;
+    bool grounded = false;
+    GameObject feet,left,right;
+    collMan ft, lft, rt;
+    bool wallc = false;
+    bool jump;
+    float hor;
     
 
     void Start()
