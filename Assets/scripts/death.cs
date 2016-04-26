@@ -7,7 +7,7 @@ public class death : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        ply = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	// Update is called once per frame

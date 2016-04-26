@@ -7,6 +7,7 @@ public class PCamera : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        plyr = GameObject.FindGameObjectWithTag("Player");
         Coords.x = 0;
         Coords.y = 0;
         Coords.z = -1;

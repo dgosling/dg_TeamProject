@@ -11,7 +11,8 @@ public class enemydamage : MonoBehaviour {
 	//public double health;
 	// Use this for initiaelization
 	void Start () {
-		refer = GameObject.Find ("HealthBar");
+        player = GameObject.FindGameObjectWithTag("Player"); ;
+        refer = GameObject.Find ("HealthBar");
 		value = refer.GetComponent<health> ();
 	}
 	
