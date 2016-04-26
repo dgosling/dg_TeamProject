@@ -6,6 +6,8 @@ public class groundPound : MonoBehaviour {
     public float height, velo, downwardsForce,cpos,pos;
     public Vector2 cvelo;
     public playerInv inv;
+    private bool inGP;
+    public collMan collman;
     
 
 
@@ -14,11 +16,23 @@ public class groundPound : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         brkwll = GameObject.FindGameObjectWithTag("breakable");
         inv = player.GetComponent<playerInv>();
+        collman = player.GetComponent<collMan>();
         
 	}
 	void Update()
     {
         cvelo = player.GetComponent<Rigidbody2D>().velocity;
+        if ((player.GetComponent<Rigidbody2D>().velocity.y == 0 || player.GetComponent<Rigidbody2D>().velocity.y > 0) && inGP == true && collman.getInCollision() == true && collman.getGameObject() == brkwll)
+        {
+            Debug.Log("detected collision and destroying wall");
+            Destroy(brkwll);
+        }
+        if (player.GetComponent<Rigidbody2D>().velocity.y == 0 && inGP == true)
+        {
+            inGP = false;
+            Debug.Log("set to "+inGP);
+        }
+        
     }
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -28,32 +42,14 @@ public class groundPound : MonoBehaviour {
             
             
             
-            if (cvelo.x > 0) { 
-                for (float ccvelo = player.GetComponent<Rigidbody2D>().velocity.x+velo; ccvelo > 0; ccvelo -= 0.5f)
-                {
-                    player.GetComponent<Rigidbody2D>().velocity = new Vector2(ccvelo,ccvelo);
-                }
-        }
-            if(cvelo.x<0)
-            {
-                for (float ccvelo = player.GetComponent<Rigidbody2D>().velocity.x+velo; ccvelo < 0; ccvelo +=  0.5f)
-                {
-                    player.GetComponent<Rigidbody2D>().velocity = new Vector2(ccvelo, ccvelo);
-                }
-            }
-            else
-            {
-                for (float ccvelo = player.GetComponent<Rigidbody2D>().velocity.x + velo; ccvelo > 0; ccvelo -= 0.5f)
-                {
-                    player.GetComponent<Rigidbody2D>().velocity = new Vector2(ccvelo, ccvelo);
-                }
-            }
+            
 
             player.GetComponent<Rigidbody2D>().velocity = new Vector2(+0,-downwardsForce);
-            if (player.GetComponent<BoxCollider2D>().IsTouching(brkwll.GetComponent<BoxCollider2D>()))
-            {
-                Destroy(brkwll);
-            }
+            Debug.Log("added force");
+            inGP = true;
+            Debug.Log("set inGP to " + inGP);
+
+           
 
 
         }

@@ -7,15 +7,23 @@ public class movement : MonoBehaviour {
     public float moveSpeed;
     private Rigidbody2D rigid;
     public bool grounded = false;
-    public LayerMask groundM, wallM;
+    public GameObject feet,left,right;
+    public collMan ft, lft, rt;
     public bool wallc = false;
     public bool jump;
     public float hor;
+    
 
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
-
+        feet = GameObject.FindGameObjectWithTag("feet");
+        left = GameObject.FindGameObjectWithTag("left");
+        right = GameObject.FindGameObjectWithTag("right");
+        ft = feet.GetComponent<collMan>();
+        lft = left.GetComponent<collMan>();
+        rt = right.GetComponent<collMan>();
+        
     }
 
 
@@ -32,6 +40,14 @@ public class movement : MonoBehaviour {
     void Movement()
     {
         rigid.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rigid.velocity.y);
+        if (Input.GetAxis("Horizontal")>0)
+        {
+            GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
+        }
+        else if (Input.GetAxis("Horizontal") < 0)
+        {
+            GetComponent<Transform>().localScale = new Vector3(-1, 1, 1);
+        }
 
         jump = Input.GetButton("Jump");
         hor = Input.GetAxis("Horizontal");
@@ -57,19 +73,7 @@ public class movement : MonoBehaviour {
     }
         bool Cground()
     {
-            Collider2D[] groundObjs = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y - transform.GetComponent<BoxCollider2D>().size.y / 2) * transform.localScale.y, 0.01f, groundM);
-            if (groundObjs.Length > 0)
-            {
-                return true;
-            }
-
-        groundObjs = Physics2D.OverlapCircleAll(new Vector2((transform.position.x - transform.GetComponent<BoxCollider2D>().size.x / 2) * transform.localScale.x, transform.position.y - transform.GetComponent<BoxCollider2D>().size.y / 2) * transform.localScale.y, 0.01f, groundM);
-        if (groundObjs.Length > 0)
-        {
-            return true;
-        }
-        groundObjs = Physics2D.OverlapCircleAll(new Vector2((transform.position.x + transform.GetComponent<BoxCollider2D>().size.x / 2) * transform.localScale.x, transform.position.y - transform.GetComponent<BoxCollider2D>().size.y / 2) * transform.localScale.y, 0.01f, groundM);
-        if (groundObjs.Length > 0)
+        if (ft.getInCollision() == true)
         {
             return true;
         }
@@ -83,39 +87,18 @@ public class movement : MonoBehaviour {
 
         bool cWall()
     {
-            Collider2D[] wallObjs = Physics2D.OverlapCircleAll(new Vector2(transform.position.x - transform.GetComponent<BoxCollider2D>().size.x / 2 * transform.localScale.x + -0.01f, transform.position.y), 0.01f, wallM);
-            
-        if (wallObjs.Length != 0)
-            {
-                return true;
-            }
-
-        wallObjs = Physics2D.OverlapCircleAll(new Vector2(transform.position.x - transform.GetComponent<BoxCollider2D>().size.x / 2 * transform.localScale.x , transform.position.y), 0.01f, wallM);
-        if (wallObjs.Length != 0)
+        if (lft.getInCollision() == true || rt.getInCollision() == true)
         {
             return true;
         }
 
-        wallObjs = Physics2D.OverlapCircleAll(new Vector2(transform.position.x + transform.GetComponent<BoxCollider2D>().size.x / 2 * transform.localScale.x , transform.position.y), 0.01f, wallM);
-        if (wallObjs.Length != 0)
-        {
-            return true;
-        }
         return false;
 
 
 
         }
 
-        void OnDrawGizmos()
-    {
-            Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - transform.GetComponent<BoxCollider2D>().size.y / 2 * transform.localScale.y, 0.0f),0.01f);
-        Gizmos.DrawSphere(new Vector3(transform.position.x - transform.GetComponent<BoxCollider2D>().size.x / 2 * transform.localScale.x , transform.position.y, 0.0f), 0.01f);
-        Gizmos.DrawSphere(new Vector3(transform.position.x + transform.GetComponent<BoxCollider2D>().size.x/2  * transform.localScale.x , transform.position.y, 0.0f), 0.01f);
-        Gizmos.DrawSphere(new Vector3((transform.position.x - transform.GetComponent<BoxCollider2D>().size.x / 2) * transform.localScale.x, (transform.position.y - transform.GetComponent<BoxCollider2D>().size.y / 2) * transform.localScale.y - 0.01f), 0.01f);
-        Gizmos.DrawSphere(new Vector3((transform.position.x + transform.GetComponent<BoxCollider2D>().size.x / 2) * transform.localScale.x, (transform.position.y - transform.GetComponent<BoxCollider2D>().size.y / 2) * transform.localScale.y - 0.01f), 0.01f);
-
-    }
+        
     public float getMspeed()
     {
         return moveSpeed;
@@ -125,6 +108,13 @@ public class movement : MonoBehaviour {
         return wallc;
     }
 
+    public float getHeight()
+    {
+        return jumph;
+    }
+
 
     }
+
+
 

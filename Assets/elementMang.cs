@@ -14,7 +14,7 @@ public class elementMang : MonoBehaviour {
 	void Start () {
         
         element = GameObject.FindGameObjectsWithTag("element");
-        Debug.Log("There are " + element.Length + " elements on the map");
+        //Debug.Log("There are " + element.Length + " elements on the map");
         player = GameObject.FindWithTag("Player");
         inv = player.GetComponent<playerInv>();
       

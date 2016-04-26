@@ -22,17 +22,17 @@ public class wallclimb : MonoBehaviour {
         vmove = Input.GetAxis("Vertical");
         if (tog == true)
         {
-            player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, +0);
-            player.GetComponent<Rigidbody2D>().isKinematic = true;
+            
+            player.GetComponent<Rigidbody2D>().gravityScale = 0;
             if(Input.GetAxis("Vertical") != 0)
             {
-                player.GetComponent<Rigidbody2D>().velocity =new Vector2 (+0, Input.GetAxis("Vertical") * move.getMspeed());
+                player.GetComponent<Rigidbody2D>().velocity =new Vector2 (0, Input.GetAxis("Vertical") * move.getMspeed());
             }
   
         }
         if(tog==false)
         {
-            player.GetComponent<Rigidbody2D>().isKinematic=false;
+            player.GetComponent<Rigidbody2D>().gravityScale = 1;
         }
     }
 	void FixedUpdate()
