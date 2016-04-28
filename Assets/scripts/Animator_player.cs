@@ -12,7 +12,7 @@ public class Animator_player : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void OnTriggerStay2D(Collider2D col)
+	void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject == GameObject.FindGameObjectWithTag("Player"))
         {
@@ -20,7 +20,14 @@ public class Animator_player : MonoBehaviour {
 
         }
 
-        else
+        
+            
+    }
+    void OnTriggerExit2D(Collider2D coll)
+    {
+        if(coll.gameObject == GameObject.FindGameObjectWithTag("Player"))
+        {
             anim.SetBool("Attack", false);
+        }
     }
 }

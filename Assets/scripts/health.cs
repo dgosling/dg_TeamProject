@@ -1,25 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 public class health : MonoBehaviour {
 
 	public float maxhealth;
 	float chealth;
-	public GameObject healthbar;
+	public GameObject healthbar,ply;
 	float healthdec;
-
+    Scene sc;
 
 	// Use this for initialization
 	void Start () {
 		chealth = maxhealth;
 		setBar (chealth/maxhealth);
-		//InvokeRepeating ("debug_dec", 1f,1f);
+        ply = GameObject.FindGameObjectWithTag("Player");
+        //InvokeRepeating ("debug_dec", 1f,1f);
+        sc = SceneManager.GetActiveScene();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		healthdec = chealth / maxhealth;
 		setBar (healthdec);
+        if(chealth<=0)
+        {
+            Destroy(ply);
+            SceneManager.LoadScene(sc.name);
+        }
 		
 	}
 
