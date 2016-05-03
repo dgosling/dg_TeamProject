@@ -30,7 +30,7 @@ public class charge : MonoBehaviour {
            
             cposx = player.GetComponent<Transform>().position.x;
             
-            if(player.GetComponent<Transform>().localScale.x==1)
+            if(player.GetComponent<Transform>().localScale.x==.25)
             {
                 endposx = cposx + dif;
                 player.GetComponent<Rigidbody2D>().AddForce(new Vector2(cspeed*100,1));
@@ -38,7 +38,7 @@ public class charge : MonoBehaviour {
                 incharge = true;
                 pos = true;
             }
-            else if(player.GetComponent<Transform>().localScale.x==-1)
+            else if(player.GetComponent<Transform>().localScale.x==-.25)
             {
                 endposx = cposx - dif;
                 player.GetComponent<Rigidbody2D>().AddForce(new Vector2((-1*cspeed)*100, 1));

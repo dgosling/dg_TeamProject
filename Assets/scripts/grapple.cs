@@ -30,19 +30,19 @@ public class grapple : MonoBehaviour {
         }
         line.SetPosition(0, transform.position);
         line.SetPosition(1, ray.point);
-        if(GetComponent<Transform>().localScale.x==1)
+        if(GetComponent<Transform>().localScale.x==.25)
         {
             curpos.x = transform.position.x + max;
             curpos.y = transform.position.y + max;
             curpos.z = 0;
         }
-        if(GetComponent<Transform>().localScale.x==-1)
+        if(GetComponent<Transform>().localScale.x==-.25)
         {
             curpos.x = transform.position.x - max;
             curpos.y = transform.position.y + max;
             curpos.z = 0;
         }
-        if (Input.GetButtonDown("grapple") == true && inv.getElement(3) == true && GetComponent<Transform>().localScale.x == 1)
+        if (Input.GetButtonDown("grapple") == true && inv.getElement(3) == true && GetComponent<Transform>().localScale.x == .25)
         {
             ray = Physics2D.Raycast(transform.position, curpos - transform.position,max,mask);
             if(ray.collider!=null)
@@ -55,7 +55,7 @@ public class grapple : MonoBehaviour {
             }
             
         }
-        if (Input.GetButtonDown("grapple") == true && inv.getElement(3) == true && GetComponent<Transform>().localScale.x == -1)
+        if (Input.GetButtonDown("grapple") == true && inv.getElement(3) == true && GetComponent<Transform>().localScale.x == -.25)
         {
             
             ray = Physics2D.Raycast(transform.position, curpos, 10, mask);

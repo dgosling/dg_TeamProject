@@ -31,9 +31,9 @@ public class enemydamage : MonoBehaviour {
 			value.setchealth (thealth1);
 			glob = thealth1/thealth2;
 			value.setBar (glob);
-            if (player.GetComponent<Transform>().localScale.x == 1)
+            if (player.GetComponent<Transform>().localScale.x == .25)
                 player.GetComponent<Rigidbody2D>().AddForce(new Vector2 (-1000,0));
-            if (player.GetComponent<Transform>().localScale.x == -1)
+            if (player.GetComponent<Transform>().localScale.x == -.25)
                 player.GetComponent<Rigidbody2D>().AddForce(new Vector2(1000, 0));
         }
 
